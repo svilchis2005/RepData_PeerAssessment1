@@ -59,7 +59,7 @@ dataNoNA<-data[goodRds,]
 1. What is the mean of the total number of steps taken per day?
 
 ```{r Q1, eval = TRUE, echo=TRUE, warning=FALSE, fig.width=8, fig.height=5, message = FALSE}
-# Grouping the data by day and summing up the steps  
+# Grouping the data by day and summing up the steps    
     # Using the original data
 gpDataOri<-ddply(data, .(date), summarize, steps=sum(steps, na.rm=TRUE))
   
@@ -112,8 +112,8 @@ grid.arrange(g1,g2, ncol=2, main='Histogram: steps per day')
     
 The observed statistics of the total number of steps taken per day are the following:  
   
-- Using the original data:    
-    - **Mean = ** `r format(meanStepsDayOri, big.mark=",")`
+- Using the original data:  
+    - **Mean = ** `r format(meanStepsDayOri, big.mark=",")`  
     - **Median = ** `r format(medianStepsDayOri, big.mark=",")`
 
 - Using the data with no NAs

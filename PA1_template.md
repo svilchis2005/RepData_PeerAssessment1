@@ -1,6 +1,15 @@
-# Reproducible Research: Peer Assessment 1
-MODULE 5  
-April 18, 2015  
+---
+title: 'Reproducible Research: Peer Assessment 1'
+author: "MODULE 5"
+date: "April 18, 2015"
+output:
+  html_document:
+    keep_md: yes
+    theme: united
+  pdf_document:
+    highlight: zenburn
+  word_document: default
+---
 
 ========================================================================================
     
@@ -86,14 +95,14 @@ g2 <- ggplot(gpData1, aes(x = steps)) + geom_histogram(aes(y = ..density..,
 grid.arrange(g1, g2, ncol = 2, main = "Histogram: steps per day")
 ```
 
-![](Figs/plotQ1-1.png) 
+![plot of chunk plotQ1](Figs/plotQ1-1.png) 
   
     
     
 The observed statistics of the total number of steps taken per day are the following:  
   
-- Using the original data:    
-    - **Mean = ** 9,354
+- Using the original data:  
+    - **Mean = ** 9,354  
     - **Median = ** 10,395
 
 - Using the data with no NAs
@@ -118,7 +127,7 @@ g1 <- ggplot(gpData2, aes(x = interval, y = MeanStepsInt))
 g1 + geom_line() + ggtitle("Average number of steps per interval")
 ```
 
-![](Figs/plotQ2-1.png) 
+![plot of chunk plotQ2](Figs/plotQ2-1.png) 
 
 ```r
 maxInt <- gpData2[which.max(gpData2$MeanStepsInt), 1]
@@ -178,7 +187,7 @@ g4 <- ggplot(gpData3, aes(x = steps)) + geom_histogram(aes(y = ..count.., binwid
 grid.arrange(g3, g4, ncol = 2)
 ```
 
-![](Figs/plotQ3-1.png) 
+![plot of chunk plotQ3](Figs/plotQ3-1.png) 
   
   
 For the new dataset, where the `NAs` where replaced, the observed statistics are:  
@@ -203,7 +212,7 @@ g5 + geom_histogram(aes(y = ..density.., binwidth = 1)) + geom_density() + geom_
     x = 16000, y = 0.0002, size = 3, colour = "blue") + ggtitle("Histogram of the number of steps per day - original dataset")
 ```
 
-![](Figs/plotSumQ3-1.png) 
+![plot of chunk plotSumQ3](Figs/plotSumQ3-1.png) 
 
 4.  Are there differences in activity patterns between weekdays and weekends?
 
@@ -230,7 +239,7 @@ g6 + geom_line() + ggtitle("Average number of steps per interval") + facet_wrap(
     ncol = 1)
 ```
 
-![](Figs/plotQ4-1.png) 
+![plot of chunk plotQ4](Figs/plotQ4-1.png) 
 
 
 ```r
