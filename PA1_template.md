@@ -41,7 +41,7 @@ dataNoNA <- data[goodRds, ]
 
 
 ## Analysis of the data
-1. What is the mean of the total number of steps taken per day?
+### 1. What is the mean of the total number of steps taken per day?
 
 
 ```r
@@ -61,22 +61,22 @@ meanStepsDay1 <- round(mean(gpData1$steps), 2)
 medianStepsDay1 <- round(median(gpData1$steps), 2)
 
 # Histogram of number of steps per day Using the original data
-g1 <- ggplot(gpDataOri, aes(x = steps)) + geom_histogram(aes(y = ..density.., 
-    binwidth = 1)) + geom_density() + geom_vline(xintercept = meanStepsDayOri, 
-    colour = "red", size = 1) + geom_vline(xintercept = medianStepsDayOri, colour = "green", 
+g1 <- ggplot(gpDataOri, aes(x = steps)) + geom_histogram(binwidth = (max(gpDataOri$steps) - 
+    min(gpDataOri$steps))/5) + geom_vline(xintercept = meanStepsDayOri, colour = "red", 
+    size = 1) + geom_vline(xintercept = medianStepsDayOri, colour = "green", 
     size = 0.5) + ggtitle("Original dataset") + theme(plot.title = element_text(lineheight = 0.8, 
-    size = 12)) + annotate("text", label = "Mean: vertical red line", x = 16000, 
-    y = 0.00024, size = 3, colour = "red") + annotate("text", label = "Median: vertical green line", 
-    x = 16000, y = 0.00022, size = 3, colour = "green")
+    size = 12)) + annotate("text", label = "Mean: vertical red line", x = 20000, 
+    y = 22, size = 3, colour = "red") + annotate("text", label = "Median: vertical green line", 
+    x = 20000, y = 21, size = 3, colour = "green")
 
 # Using the data with no NAs
-g2 <- ggplot(gpData1, aes(x = steps)) + geom_histogram(aes(y = ..density.., 
-    binwidth = 1)) + geom_density() + geom_vline(xintercept = meanStepsDay1, 
-    colour = "red", size = 1) + geom_vline(xintercept = medianStepsDay1, colour = "green", 
-    size = 0.5) + ggtitle("Dataset with no NAs") + theme(plot.title = element_text(lineheight = 0.8, 
-    size = 12)) + annotate("text", label = "Mean: vertical red line", x = 18000, 
-    y = 0.00024, size = 3, colour = "red") + annotate("text", label = "Median: vertical green line", 
-    x = 18000, y = 0.00022, size = 3, colour = "green")
+g2 <- ggplot(gpData1, aes(x = steps)) + geom_histogram(binwidth = (max(gpData1$steps) - 
+    min(gpData1$steps))/5) + geom_vline(xintercept = meanStepsDay1, colour = "red", 
+    size = 1) + geom_vline(xintercept = medianStepsDay1, colour = "green", size = 0.5) + 
+    ggtitle("Dataset with no NAs") + theme(plot.title = element_text(lineheight = 0.8, 
+    size = 12)) + annotate("text", label = "Mean: vertical red line", x = 22000, 
+    y = 22, size = 3, colour = "red") + annotate("text", label = "Median: vertical green line", 
+    x = 22000, y = 21, size = 3, colour = "green")
 ```
   
     
@@ -101,10 +101,9 @@ The observed statistics of the total number of steps taken per day are the follo
     - **Median = ** 10,765
 
 
-2.  What is the average daily activity pattern?
-  
-  
-    In this section, the dataset with no NAs was used. 
+### 2.  What is the average daily activity pattern?  
+    
+In this section, the dataset with no NAs was used. 
   
   
 
@@ -128,11 +127,11 @@ maxAvg <- gpData2[which.max(gpData2$MeanStepsInt), 2]
 The 5-minute interval, on average across all the days in the dataset, that contains the maximum number of steps is the interval **835**, with an average number of steps equal to **206.17**.
 
 
-3.  Imputing missing values  
+### 3.  Imputing missing values  
 
-    The total number of rows in the original dataset with `NAs` is 2,304.  
+The total number of rows in the original dataset with `NAs` is 2,304.  
 
-    A new dataset was created following the next steps:  
+A new dataset was created following the next steps:  
 
 - Copying the original dataset  
 - Identifying the rows with `NAs`    
@@ -160,16 +159,17 @@ meanStepsDay3 <- round(mean(gpData3$steps), 2)
 medianStepsDay3 <- round(median(gpData3$steps), 2)
 
 # Histogram of number of steps per day
-g3 <- ggplot(gpData3, aes(x = steps)) + geom_histogram(aes(y = ..density.., 
-    binwidth = 1)) + geom_density() + geom_vline(xintercept = meanStepsDay3, 
-    colour = "red", size = 1) + ggtitle("Histogram: steps per day - Density") + 
+g3 <- ggplot(gpData3, aes(x = steps)) + geom_histogram(aes(y = ..density..), 
+    binwidth = (max(gpData3$steps) - min(gpData3$steps))/5) + geom_density() + 
+    geom_vline(xintercept = meanStepsDay3, colour = "red", size = 1) + ggtitle("Histogram: steps per day - Density") + 
     theme(plot.title = element_text(lineheight = 0.8, size = 12)) + annotate("text", 
-    label = "Mean: vertical red line", x = 18000, y = 0.00024, size = 3, colour = "red")
+    label = "Mean: vertical red line", x = 20000, y = 0.00024, size = 3, colour = "red")
 
-g4 <- ggplot(gpData3, aes(x = steps)) + geom_histogram(aes(y = ..count.., binwidth = 1)) + 
-    geom_vline(xintercept = medianStepsDay3, colour = "green", size = 1) + ggtitle("Histogram: steps per day - Count") + 
-    theme(plot.title = element_text(lineheight = 0.8, size = 12)) + annotate("text", 
-    label = "Median: vertical green line", x = 18000, y = 10, size = 3, colour = "green")
+g4 <- ggplot(gpData3, aes(x = steps)) + geom_histogram(binwidth = (max(gpData3$steps) - 
+    min(gpData3$steps))/5) + geom_vline(xintercept = medianStepsDay3, colour = "green", 
+    size = 1) + ggtitle("Histogram: steps per day - Count") + theme(plot.title = element_text(lineheight = 0.8, 
+    size = 12)) + annotate("text", label = "Median: vertical green line", x = 22000, 
+    y = 25, size = 3, colour = "green")
 ```
 
 
@@ -190,24 +190,23 @@ As it can be seen, these values differ from the estimates from the first part of
   
 
 ```r
-# Using the original data
-g5 <- ggplot(gpDataOri, aes(x = steps))
-
-g5 + geom_histogram(aes(y = ..density.., binwidth = 1)) + geom_density() + geom_vline(xintercept = meanStepsDayOri, 
-    colour = "red", size = 1) + geom_vline(xintercept = meanStepsDay1, colour = "green", 
-    size = 2) + geom_vline(xintercept = meanStepsDay3, colour = "blue", size = 0.7) + 
-    theme(plot.title = element_text(lineheight = 0.8, size = 12)) + annotate("text", 
-    label = "Mean using the original dataset", x = 16000, y = 0.00024, size = 3, 
-    colour = "red") + annotate("text", label = "Mean using dataset without NA", 
-    x = 16000, y = 0.00022, size = 3, colour = "green") + annotate("text", label = "Mean using the dataset with NAs filled", 
-    x = 16000, y = 0.0002, size = 3, colour = "blue") + ggtitle("Histogram of the number of steps per day - original dataset")
+# Using the dataset with NAs filled-in
+g5 <- ggplot(gpData3, aes(x = steps))
+g5 + geom_histogram(binwidth = (max(gpData3$steps) - min(gpData3$steps))/5) + 
+    geom_vline(xintercept = meanStepsDayOri, colour = "red", size = 1) + geom_vline(xintercept = meanStepsDay1, 
+    colour = "green", size = 2) + geom_vline(xintercept = meanStepsDay3, colour = "blue", 
+    size = 0.7) + theme(plot.title = element_text(lineheight = 0.8, size = 12)) + 
+    annotate("text", label = "Mean using the original dataset", x = 22000, y = 22, 
+        size = 3, colour = "red") + annotate("text", label = "Mean using dataset without NA", 
+    x = 22000, y = 21, size = 3, colour = "green") + annotate("text", label = "Mean using the dataset with NAs filled", 
+    x = 22000, y = 20, size = 3, colour = "blue") + ggtitle("Histogram of the number of steps per day - original dataset")
 ```
 
 ![](Figs/plotSumQ3-1.png) 
 
-4.  Are there differences in activity patterns between weekdays and weekends?
+### 4.  Are there differences in activity patterns between weekdays and weekends?
 
-    Using the dataset with the filled-in missing values from the previous section 3, the activity patterns between weekdays and weekends was analyzed by doing the following:  
+Using the dataset with the filled-in missing values from the previous section 3, the activity patterns between weekdays and weekends was analyzed by doing the following:  
     
 - Creating a new factor variable in the dataset with two levels: "weekday" and "weekend" to indicate whether a given date is a "weekday" or a "weekend" day.
 - Grouping the data by type of day ("weekday", "weekend") and interval
